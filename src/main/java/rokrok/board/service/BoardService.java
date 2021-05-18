@@ -21,22 +21,42 @@ public class BoardService {
     public Long savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
-    
+
     @Transactional
-    public List<BoardDto> getBoardList(){
-    	List<Board> boardList=boardRepository.findAll();
-    	List<BoardDto> boardDtoList =new ArrayList<>();
-    	
-    	for (Board board:boardList) {
-    		BoardDto boardDto=BoardDto.builder()
-    				.id(board.getId())
-    				.author(board.getAuthor())
-    				.title(board.getTitle())
-    				.createdDate(board.getCreatedDate())
-    				.build();
-    		boardDtoList.add(boardDto);
+    public List<BoardDto> getBoardList() {
+        List<Board> boardList = boardRepository.findAll();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for(Board board : boardList) {
+            BoardDto boardDto = BoardDto.builder()
+                    .id(board.getId())
+                    .author(board.getAuthor())
+                    .title(board.getTitle())
+                    .content(board.getContent())
+                    .createdDate(board.getCreatedDate())
+                    .build();
+            boardDtoList.add(boardDto);
         }
         return boardDtoList;
-    	}
     }
+    
+    @Transactional
+    public BoardDto getPost(Long id) {
+    	Board board=boardRepository.findById(id).get();
+    	
+    	BoardDto boardDto=BoardDto.builder()
+    			.id(board.getId())
+    			.author(board.getAuthor())
+    			.title(board.getTitle())
+    			.content(board.getContent())
+    			.createdDate(board.getCreatedDate())
+    			.build();
+    	return boardDto;
+    }
+    
+    @Transactional
+    public void deletePost(Long id) {
+    	boardRepository.deleteById(id);
+    }
+  
 }
