@@ -7,17 +7,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
-@EnableJpaAuditing
 @SpringBootApplication
-@ComponentScan(basePackages={"controller"})
-@ComponentScan(basePackages={"config"})
 public class BoardApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
 	
-	@Bean //@PutMapping, @DeleteMapping ÀÛµ¿ÇÏµµ·Ï ÇØÁÜ 
+	@Bean //@PutMapping, @DeleteMapping ï¿½Ûµï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
 		return new HiddenHttpMethodFilter();
 	}
