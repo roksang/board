@@ -14,7 +14,7 @@ public class BoardApplication {
 		SpringApplication.run(BoardApplication.class, args);
 	}
 	
-	@Bean //@PutMapping, @DeleteMapping �۵��ϵ��� ���� 
+	@Bean //@PutMapping, @DeleteMapping 작동
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
 		return new HiddenHttpMethodFilter();
 	}
